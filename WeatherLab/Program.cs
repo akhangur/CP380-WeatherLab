@@ -26,13 +26,17 @@ namespace WeatherLab
             // Cooling degree days have a mean temp of >=18C
             //
 
-             var meanValue = measurements.GroupBy(
-                row => row.year).Select(
-                meanValue => new {
-                    Year = meanValue.Key, 
-                    Hdd = meanValue.Where(
+             var m_value = measurements.GroupBy
+                 (
+                row => row.year).Select
+                 (
+                m_value => new 
+                 {
+                    Year = m_value.Key, 
+                     
+                    Hdd = m_value.Where(
                         row => row.meantemp < 18).Count(),
-                    Cdd = meanValue.Where(
+                    Cdd = m_value.Where(
                         row => row.meantemp >= 18).Count()
                 });
 
@@ -51,8 +55,9 @@ namespace WeatherLab
             Console.WriteLine("Year\tHDD\tCDD");
 
            foreach (var i in meanValue)
+               
             {
-                Console.WriteLine($"{i.Year}\t{i.Hdd}\t{i.Cdd}");
+              Console.WriteLine($"{i.Year}\t{i.Hdd}\t{i.Cdd}");
             }
 
             var variableDays = from value in measurements
