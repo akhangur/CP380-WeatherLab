@@ -26,7 +26,15 @@ namespace WeatherLab
             // Cooling degree days have a mean temp of >=18C
             //
 
-            // ?? TODO ??
+             var meanValue = measurements.GroupBy(
+                row => row.year).Select(
+                meanValue => new {
+                    Year = meanValue.Key, 
+                    Hdd = meanValue.Where(
+                        row => row.meantemp < 18).Count(),
+                    Cdd = meanValue.Where(
+                        row => row.meantemp >= 18).Count()
+                });
 
             //
             // Most Variable days are the days with the biggest temperature
