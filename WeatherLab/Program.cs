@@ -78,26 +78,27 @@ namespace WeatherLab
                 {
                     case 0:
                         Console.WriteLine($"{i.yearMonthDay}\t{i.delta}");
-                        count++;
-                        break;
+                        
+                             count++;
+                             break;
                     case 1:
                         Console.WriteLine($"{i.yearMonthDay}\t{i.delta}");
-                        count++;
-                        break;
+                             count++;
+                             break;
                     case 2:
                         Console.WriteLine($"{i.yearMonthDay}\t{i.delta}");
-                        count++;
-                        break;
+                               count++;
+                               break;
                     case 3:
                         Console.WriteLine($"{i.yearMonthDay}\t{i.delta}");
-                        count++;
-                        break;
+                              count++;
+                              break;
                     case 4:
                         Console.WriteLine($"{i.yearMonthDay}\t{i.delta}");
-                        count++;
-                        break;
+                              count++;
+                              break;
                     default:
-                        break;
+                             break;
                 }
                 //                while (count < 5)
                 //              {
