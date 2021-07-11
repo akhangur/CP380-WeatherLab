@@ -54,7 +54,7 @@ namespace WeatherLab
             //
             Console.WriteLine("Year\tHDD\tCDD");
 
-           foreach (var i in meanValue)
+           foreach (var i in m_Value)
                
             {
               Console.WriteLine($"{i.Year}\t{i.Hdd}\t{i.Cdd}");
