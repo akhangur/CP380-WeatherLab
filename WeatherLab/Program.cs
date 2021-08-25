@@ -20,25 +20,25 @@ namespace WeatherLab
             //   see: https://en.wikipedia.org/wiki/Heating_degree_day
             //
 
-        
+
 
             //
             // Cooling degree days have a mean temp of >=18C
             //
 
-             var m_value = measurements.GroupBy
-                 (
-                row => row.year).Select
-                 (
-                m_value => new 
-                 {
-                    Year = m_value.Key, 
-                     
-                    Hdd = m_value.Where(
-                        row => row.meantemp < 18).Count(),
-                    Cdd = m_value.Where(
-                        row => row.meantemp >= 18).Count()
-                });
+            var m_value = measurements
+                .GroupBy
+                (   row => row.year )
+                .Select
+                (   m_value => new
+                       {
+                           Year = m_value.Key,
+
+                           Hdd = m_value.Where(
+                               row => row.meantemp < 18).Count(),
+                           Cdd = m_value.Where(
+                               row => row.meantemp >= 18).Count()
+                       });
 
             //
             // Most Variable days are the days with the biggest temperature
@@ -54,58 +54,53 @@ namespace WeatherLab
             //
             Console.WriteLine("Year\tHDD\tCDD");
 
-           foreach (var i in m_Value)
-               
+            foreach (var i in m_value)
+
             {
-              Console.WriteLine($"{i.Year}\t{i.Hdd}\t{i.Cdd}");
+                Console.WriteLine($"{i.Year}\t{i.Hdd}\t{i.Cdd}");
             }
 
-            var variableDays = from value in measurements
-                           orderby (value.maxtemp - value.mintemp) descending
-                           select new
-                           {
-                               yearMonthDay = $"{value.year}-{value.month:d2}-{value.day:d2}",
-                               delta = (value.maxtemp - value.mintemp)
-                           };
+            var vDays = from value in measurements
+                               orderby (value.maxtemp - value.mintemp) descending
+                               select new
+                               {
+                                   yearMonthDay = $"{value.year}-{value.month:d2}-{value.day:d2}",
+                                   delta = (value.maxtemp - value.mintemp)
+                               };
 
 
             Console.WriteLine("\nTop 5 Most Variable Days");
             Console.WriteLine("YYYY-MM-DD\tDelta");
-             var count = 0;
-            foreach (var i in variableDays)
+            var count = 0;
+            foreach (var i in vDays)
             {
-                switch(count)
+                switch (count)
                 {
                     case 0:
                         Console.WriteLine($"{i.yearMonthDay}\t{i.delta}");
-                        
-                             count++;
-                             break;
+
+                        count++;
+                        break;
                     case 1:
                         Console.WriteLine($"{i.yearMonthDay}\t{i.delta}");
-                             count++;
-                             break;
+                        count++;
+                        break;
                     case 2:
                         Console.WriteLine($"{i.yearMonthDay}\t{i.delta}");
-                               count++;
-                               break;
+                        count++;
+                        break;
                     case 3:
                         Console.WriteLine($"{i.yearMonthDay}\t{i.delta}");
-                              count++;
-                              break;
+                        count++;
+                        break;
                     case 4:
                         Console.WriteLine($"{i.yearMonthDay}\t{i.delta}");
-                              count++;
-                              break;
+                        count++;
+                        break;
                     default:
-                             break;
+                        break;
                 }
-                //                while (count < 5)
-                //              {
-                //                Console.WriteLine($"{i.yearMonthDay}\t{i.delta}");
-                //              count++;
-                //        }
-
+            }
         }
     }
 }
